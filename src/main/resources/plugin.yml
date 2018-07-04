@@ -1,0 +1,15 @@
+name: CustomDungeons
+main: com.mrcoderboy345.dungeon.MainClass
+version: "1.0"
+api: ["1.0.0"]
+
+load: STARTUP
+author: MrCoderBoy345
+description: Custom Dungeon Plugin For Nukkit
+website: https://github.com/MrCoderBoy345/CustomDungeons
+
+commands:
+  customenchant:
+    description: give the item that the player is holding an enchant from the customdungeons plugin
+    aliases: ["ce"]
+    usage: /customenchant <enchantment>
