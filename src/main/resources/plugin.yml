@@ -12,4 +12,8 @@ commands:
   customenchant:
     description: give the item that the player is holding an enchant from the customdungeons plugin
     aliases: ["ce"]
-    usage: /customenchant <enchantment>
+    usage: /customenchant <enchantment> <level>
+  spawn:
+    description: summon a custom boss
+    aliases: ["summon"]
+    usage: /spawn <Zombie/Skeleton> <health> <damage> <name>
