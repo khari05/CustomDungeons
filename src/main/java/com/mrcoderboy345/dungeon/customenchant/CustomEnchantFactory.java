@@ -10,7 +10,7 @@ public class CustomEnchantFactory {
         switch(enchantName) {
             case "vision":
                 enchant = new NightVisionEnchant(logger, enchantName, level);
-                logger.info("NightVision enchantment created");
+                // logger.info("NightVision enchantment created");
                 break;
             default:
                 //log that the passed in enchantName is invalid

@@ -1,5 +1,7 @@
 package com.mrcoderboy345.dungeon.customenchant;
 
+import java.util.ArrayList;
+
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.nbt.tag.CompoundTag;
@@ -8,6 +10,7 @@ import cn.nukkit.utils.Logger;
 
 public abstract class CustomEnchant{
     protected String name;
+    protected String displayName;
     protected int level;
     protected Logger logger;
 
@@ -19,6 +22,8 @@ public abstract class CustomEnchant{
     public String getName(){
         return name;
     }
+
+    public abstract String getDisplayName();
 
     public int getLevel() {
         return level;
@@ -43,6 +48,9 @@ public abstract class CustomEnchant{
                 );
         tag.putList(enchants);
         item.setNamedTag(tag);
+        ArrayList<String> newLore = new ArrayList<>(java.util.Arrays.asList(item.getLore()));
+        newLore.add(this.getDisplayName());
+        item.setLore(newLore.toArray(new String[0]));
         // logger.info("Created CompoundTag-" + this.toString());
 
     }

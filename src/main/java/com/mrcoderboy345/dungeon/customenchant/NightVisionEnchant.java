@@ -9,8 +9,14 @@ public class NightVisionEnchant extends CustomEnchant{
     
     public NightVisionEnchant(Logger logger, String name, int level){
         super(logger, name, 1);
+        this.displayName = "Night Vision";
     }
 
+    @Override
+    public String getDisplayName() {
+        return this.displayName;
+    }
+    
     @Override 
     public boolean canBeAppliedTo(Item item) {
         // logger.info("Applying NightVision to " + item.getName() + " IsHelmet[" + item.isHelmet() + "]");
