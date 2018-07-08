@@ -1,8 +1,11 @@
 package com.mrcoderboy345.dungeon.customenchant;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.nukkit.Player;
+import cn.nukkit.entity.Entity;
 import cn.nukkit.item.Item;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.nbt.tag.ListTag;
@@ -13,12 +16,15 @@ public abstract class CustomEnchant{
     protected String displayName;
     protected int level;
     protected Logger logger;
+    private Map<Integer,String> romanMap;
 
     public CustomEnchant(Logger logger, String name, int level){
         this.logger = logger;
         this.name = name;
         this.level = level;
+        initRomanMap();
     }
+
     public String getName(){
         return name;
     }
@@ -54,18 +60,34 @@ public abstract class CustomEnchant{
         // logger.info("Created CompoundTag-" + this.toString());
 
     }
+    private void initRomanMap() {
+        romanMap = new HashMap<Integer,String>();
+        romanMap.put(1, "I");
+        romanMap.put(2, "II");
+        romanMap.put(3, "III");
+        romanMap.put(4, "IV");
+        romanMap.put(5, "V");
+    }
+    protected String getRoman(int level){
+        return romanMap.get(level);
+    }
+
     public void onArmor(Player player){
 
     }
+
     public void offArmor(Player player){
 
     }
-    public void onAttack(Player player, int damage, Player victim){
+
+    public void onAttack(Player damager, Float damage, Entity victim){
 
     }
-    public void whenHit(Player damager, Player victim){
+
+    public void whenHit(Entity damager, Float damage, Player victim){
 
     }
+    
     public abstract boolean canBeAppliedTo(Item item);
 
 }

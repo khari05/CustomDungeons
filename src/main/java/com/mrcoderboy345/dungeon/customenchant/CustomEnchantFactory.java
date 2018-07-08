@@ -12,6 +12,9 @@ public class CustomEnchantFactory {
                 enchant = new NightVisionEnchant(logger, enchantName, level);
                 // logger.info("NightVision enchantment created");
                 break;
+            case "enlightened":
+                enchant = new EnlightenedEnchant(logger, enchantName, level);
+                break;
             default:
                 //log that the passed in enchantName is invalid
                 logger.info("Invalid enchantment name" + enchantName);

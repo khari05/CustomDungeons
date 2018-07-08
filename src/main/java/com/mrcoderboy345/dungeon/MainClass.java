@@ -1,11 +1,7 @@
 package com.mrcoderboy345.dungeon;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.mrcoderboy345.dungeon.customenchant.CustomEnchant;
 import com.mrcoderboy345.dungeon.customenchant.CustomEnchantFactory;
-import com.mrcoderboy345.dungeon.customenchant.NightVisionEnchant;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
@@ -14,8 +10,7 @@ import cn.nukkit.entity.Entity;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityArmorChangeEvent;
-import cn.nukkit.event.inventory.InventoryClickEvent;
-import cn.nukkit.event.player.PlayerInteractEvent;
+import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Position;
 import cn.nukkit.level.format.FullChunk;
@@ -112,11 +107,33 @@ public class MainClass extends PluginBase implements Listener{
             }      
         } 
     }
-
-    // @EventHandler
-    // public void onInventoryClickEvent(InventoryClickEvent ev) {
-    //     this.getLogger().info("Slot:" + ev.get;
-    //     this.getLogger().info("SourceItem" + ev.getSourceItem().getName());   
-    //     this.getLogger().info("HeldItem" + ev.getHeldItem().getName()); 
-    // }
+    @EventHandler
+    public void onHit(EntityDamageByEntityEvent ev){
+        if (ev.getEntity() instanceof Player){
+            Player damagee = (Player) ev.getEntity();
+            Item[] damageearmor = damagee.getInventory().getArmorContents();
+            for (int i=0; i<damageearmor.length; i++){
+                if (damageearmor[i].hasCompoundTag()){
+                    ListTag<CompoundTag> enchants = damageearmor[i].getNamedTag().getList("customenchants",CompoundTag.class);
+                    if (enchants != null){
+                        for (int j=0; j<enchants.size(); j++){
+                            CustomEnchantFactory.createEnchant(this.getLogger(), enchants.get(j).getString("id"), enchants.get(j).getInt("lvl")).whenHit(ev.getDamager(), ev.getDamage(),(Player) ev.getEntity());
+                        }
+                    }
+                }
+            }
+        }
+        if (ev.getDamager() instanceof Player){
+            Player damager = (Player) ev.getEntity();
+            Item damagerweapon = damager.getInventory().getItemInHand();
+            if (damagerweapon.hasCompoundTag()){
+                ListTag<CompoundTag> enchants = damagerweapon.getNamedTag().getList("customenchants",CompoundTag.class);
+                if (enchants != null){
+                    for (int i=0; i<enchants.size(); i++){
+                        CustomEnchantFactory.createEnchant(this.getLogger(), enchants.get(i).getString("id"), enchants.get(i).getInt("lvl")).onAttack(damager, ev.getDamage(),ev.getEntity());
+                    }
+                }
+            }
+        }
+    }
 }

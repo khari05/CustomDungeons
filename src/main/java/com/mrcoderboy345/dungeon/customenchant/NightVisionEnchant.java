@@ -9,7 +9,7 @@ public class NightVisionEnchant extends CustomEnchant{
     
     public NightVisionEnchant(Logger logger, String name, int level){
         super(logger, name, 1);
-        this.displayName = "Night Vision";
+        this.displayName = "Night Vision I";
     }
 
     @Override
