@@ -60,10 +60,10 @@ public abstract class CustomEnchant{
     public void offArmor(Player player){
 
     }
-    public void onAttack(Player player, int damage){
+    public void onAttack(Player player, int damage, Player victim){
 
     }
-    public void whenHit(Player player){
+    public void whenHit(Player damager, Player victim){
 
     }
     public abstract boolean canBeAppliedTo(Item item);
