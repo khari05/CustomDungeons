@@ -15,6 +15,9 @@ public class CustomEnchantFactory {
             case "enlightened":
                 enchant = new EnlightenedEnchant(logger, enchantName, level);
                 break;
+            case "slice":
+                enchant = new SliceEnchant(logger, enchantName, level);
+                break;
             default:
                 //log that the passed in enchantName is invalid
                 logger.info("Invalid enchantment name" + enchantName);
