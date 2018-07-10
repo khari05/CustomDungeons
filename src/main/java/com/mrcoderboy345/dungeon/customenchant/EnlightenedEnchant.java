@@ -1,14 +1,16 @@
 package com.mrcoderboy345.dungeon.customenchant;
 
+import com.mrcoderboy345.dungeon.MainClass;
+
 import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.item.Item;
-import cn.nukkit.utils.Logger;
+
 
 public class EnlightenedEnchant extends CustomEnchant{
     
-    public EnlightenedEnchant(Logger logger, String name, int level){
-        super(logger, name, Math.min(5,level));
+    public EnlightenedEnchant(MainClass plugin, String name, int level){
+        super(plugin, name, Math.min(5,level));
         this.displayName = "Enlightened " + getRoman(this.getLevel());
     }
     @Override

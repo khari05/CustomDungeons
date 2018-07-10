@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.mrcoderboy345.dungeon.MainClass;
+
 import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.item.Item;
@@ -15,11 +17,11 @@ public abstract class CustomEnchant{
     protected String name;
     protected String displayName;
     protected int level;
-    protected Logger logger;
+    protected MainClass plugin;
     private Map<Integer,String> romanMap;
 
-    public CustomEnchant(Logger logger, String name, int level){
-        this.logger = logger;
+    public CustomEnchant(MainClass plugin, String name, int level){
+        this.plugin = plugin;
         this.name = name;
         this.level = level;
         initRomanMap();

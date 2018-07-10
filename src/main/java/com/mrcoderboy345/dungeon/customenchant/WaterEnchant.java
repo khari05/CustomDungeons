@@ -7,11 +7,11 @@ import cn.nukkit.item.Item;
 import cn.nukkit.potion.Effect;
 import cn.nukkit.utils.Logger;
 
-public class NightVisionEnchant extends CustomEnchant{
+public class WaterEnchant extends CustomEnchant{
     
-    public NightVisionEnchant(MainClass plugin, String name, int level){
+    public WaterEnchant(MainClass plugin, String name, int level){
         super(plugin, name, 1);
-        this.displayName = "Night Vision I";
+        this.displayName = "Water Breathing I";
     }
 
     @Override
@@ -28,7 +28,7 @@ public class NightVisionEnchant extends CustomEnchant{
     @Override
     public void onArmor(Player player){
 
-        Effect effect = Effect.getEffect(Effect.NIGHT_VISION);
+        Effect effect = Effect.getEffect(Effect.WATER_BREATHING);
         effect.setDuration(199999980);
         player.addEffect(effect);
         // this.logger.info("Night Vision effect added to " + player.getName());
@@ -36,7 +36,7 @@ public class NightVisionEnchant extends CustomEnchant{
 
     @Override
     public void offArmor(Player player){
-        player.removeEffect(Effect.NIGHT_VISION);
+        player.removeEffect(Effect.WATER_BREATHING);
         // this.logger.info("Night Vision effect removed from " + player.getName());
     }
 }
