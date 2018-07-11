@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import com.mrcoderboy345.dungeon.MainClass;
+
 import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.item.Item;
@@ -16,13 +18,13 @@ public abstract class CustomEnchant{
     protected String name;
     protected String displayName;
     protected int level;
-    protected Logger logger;
+    protected MainClass plugin;
     private Map<Integer,String> romanMap;
     private static final Random random = new Random(System.currentTimeMillis());
 
 
-    public CustomEnchant(Logger logger, String name, int level){
-        this.logger = logger;
+    public CustomEnchant(MainClass plugin, String name, int level){
+        this.plugin = plugin;
         this.name = name;
         this.level = level;
         initRomanMap();

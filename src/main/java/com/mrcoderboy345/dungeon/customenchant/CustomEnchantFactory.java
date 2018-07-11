@@ -1,26 +1,34 @@
 package com.mrcoderboy345.dungeon.customenchant;
 
+import com.mrcoderboy345.dungeon.MainClass;
+
 import cn.nukkit.utils.Logger;
 
 public class CustomEnchantFactory {
 
-    public static CustomEnchant createEnchant(Logger logger, String enchantName, int level) {
+    public static CustomEnchant createEnchant(MainClass plugin, String enchantName, int level) {
 
         CustomEnchant enchant = null;
         switch(enchantName) {
             case "vision":
-                enchant = new NightVisionEnchant(logger, enchantName, level);
+                enchant = new NightVisionEnchant(plugin, enchantName, level);
                 // logger.info("NightVision enchantment created");
                 break;
             case "enlightened":
-                enchant = new EnlightenedEnchant(logger, enchantName, level);
+                enchant = new EnlightenedEnchant(plugin, enchantName, level);
+                break;
+            case "invis":
+                enchant = new InvisibilityEnchant(plugin, enchantName, level);
+                break;
+            case "water":
+                enchant = new WaterEnchant(plugin, enchantName, level);
                 break;
             case "slice":
                 enchant = new SliceEnchant(logger, enchantName, level);
                 break;
             default:
                 //log that the passed in enchantName is invalid
-                logger.info("Invalid enchantment name" + enchantName);
+                plugin.getLogger().info("Invalid enchantment name" + enchantName);
         }
 
         return enchant;

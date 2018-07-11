@@ -98,7 +98,7 @@ public class MainClass extends PluginBase implements Listener{
             ListTag<CompoundTag> oldenchants = oldarmor.getNamedTag().getList("customenchants",CompoundTag.class);
             if (oldenchants != null){
                 for (int i=0; i<oldenchants.size(); i++){
-                    CustomEnchantFactory.createEnchant(this.getLogger(), oldenchants.get(i).getString("id"), oldenchants.get(i).getInt("lvl")).offArmor(player);
+                    CustomEnchantFactory.createEnchant(this, oldenchants.get(i).getString("id"), oldenchants.get(i).getInt("lvl")).offArmor(player);
                 }
             }
         }
@@ -107,7 +107,7 @@ public class MainClass extends PluginBase implements Listener{
             ListTag<CompoundTag> newenchants = newarmor.getNamedTag().getList("customenchants",CompoundTag.class);
             if(newenchants != null){
                 for (int i=0; i<newenchants.size(); i++){
-                    CustomEnchantFactory.createEnchant(this.getLogger(),newenchants.get(i).getString("id"), newenchants.get(i).getInt("lvl")).onArmor(player);
+                    CustomEnchantFactory.createEnchant(this,newenchants.get(i).getString("id"), newenchants.get(i).getInt("lvl")).onArmor(player);
                 }
             }      
         } 
@@ -139,7 +139,7 @@ public class MainClass extends PluginBase implements Listener{
                 ListTag<CompoundTag> enchants = damagerweapon.getNamedTag().getList("customenchants",CompoundTag.class);
                 if (enchants != null){
                     for (int i=0; i<enchants.size(); i++){
-                        CustomEnchantFactory.createEnchant(this.getLogger(), enchants.get(i).getString("id"), enchants.get(i).getInt("lvl")).onAttack(damager, ev.getDamage(), ev.getEntity());;
+                        CustomEnchantFactory.createEnchant(this, enchants.get(i).getString("id"), enchants.get(i).getInt("lvl")).onAttack(damager, ev.getDamage(),ev.getEntity());
                     }
                 }
             }
