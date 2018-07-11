@@ -23,6 +23,9 @@ public class CustomEnchantFactory {
             case "water":
                 enchant = new WaterEnchant(plugin, enchantName, level);
                 break;
+            case "slice":
+                enchant = new SliceEnchant(logger, enchantName, level);
+                break;
             default:
                 //log that the passed in enchantName is invalid
                 plugin.getLogger().info("Invalid enchantment name" + enchantName);

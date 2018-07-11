@@ -5,7 +5,9 @@ import com.mrcoderboy345.dungeon.MainClass;
 import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.item.Item;
-
+import cn.nukkit.nbt.tag.CompoundTag;
+import cn.nukkit.nbt.tag.ListTag;
+import cn.nukkit.utils.Logger;
 
 public class EnlightenedEnchant extends CustomEnchant{
     
@@ -24,7 +26,33 @@ public class EnlightenedEnchant extends CustomEnchant{
         return item.isArmor();
     }
     @Override
-    public void whenHit(Entity damager, Float damage, Player victim){
-
+    public boolean whenHit(Entity damager, Float damage, Player victim){
+        int rand = rand(1,100);
+        int chance = 20 + this.getLevel()*5;
+        if (rand<chance){
+            rand = rand(1,100);
+            // logger.info(victim.getName()+" has resisted "+damage/2+" hearts of damage");
+            if (rand <50){
+                float healamount = 0;
+                Item[] playerarmor = victim.getInventory().getArmorContents();
+                for (int i=0; i<playerarmor.length; i++){
+                    if (playerarmor[i].hasCompoundTag()){
+                        // logger.info("this is armor "+i+":");
+                        ListTag<CompoundTag> enchants = playerarmor[i].getNamedTag().getList("customenchants",CompoundTag.class);
+                        if (enchants != null){
+                            for (int j=0; j<enchants.size(); j++){
+                                if (enchants.get(j).getString("id").equals("enlightened")){
+                                    healamount = healamount + 2;
+                                }
+                            }
+                        }
+                    }
+                }
+                // logger.info(victim.getName()+" has healed "+healamount/2+" hearts");
+                victim.setHealth(victim.getHealth()+healamount);
+            }
+            return true;
+        } 
+        return false;
     }
 }

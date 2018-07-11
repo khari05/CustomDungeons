@@ -3,6 +3,7 @@ package com.mrcoderboy345.dungeon.customenchant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import com.mrcoderboy345.dungeon.MainClass;
 
@@ -19,6 +20,8 @@ public abstract class CustomEnchant{
     protected int level;
     protected MainClass plugin;
     private Map<Integer,String> romanMap;
+    private static final Random random = new Random(System.currentTimeMillis());
+
 
     public CustomEnchant(MainClass plugin, String name, int level){
         this.plugin = plugin;
@@ -74,6 +77,13 @@ public abstract class CustomEnchant{
         return romanMap.get(level);
     }
 
+    protected int rand(int min, int max) {
+        if (min == max) {
+            return max;
+        }
+        return min + random.nextInt(max - min);
+    }
+
     public void onArmor(Player player){
 
     }
@@ -86,10 +96,9 @@ public abstract class CustomEnchant{
 
     }
 
-    public void whenHit(Entity damager, Float damage, Player victim){
-
+    public boolean whenHit(Entity damager, Float damage, Player victim){
+        return false;
     }
-    
-    public abstract boolean canBeAppliedTo(Item item);
 
+    public abstract boolean canBeAppliedTo(Item item);
 }
