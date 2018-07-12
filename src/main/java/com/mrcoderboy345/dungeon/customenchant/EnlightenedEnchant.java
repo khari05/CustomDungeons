@@ -7,7 +7,6 @@ import cn.nukkit.entity.Entity;
 import cn.nukkit.item.Item;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.nbt.tag.ListTag;
-import cn.nukkit.utils.Logger;
 
 public class EnlightenedEnchant extends CustomEnchant{
     

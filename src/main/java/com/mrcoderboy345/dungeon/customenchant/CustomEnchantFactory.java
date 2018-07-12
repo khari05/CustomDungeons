@@ -2,8 +2,6 @@ package com.mrcoderboy345.dungeon.customenchant;
 
 import com.mrcoderboy345.dungeon.MainClass;
 
-import cn.nukkit.utils.Logger;
-
 public class CustomEnchantFactory {
 
     public static CustomEnchant createEnchant(MainClass plugin, String enchantName, int level) {
@@ -24,7 +22,7 @@ public class CustomEnchantFactory {
                 enchant = new WaterEnchant(plugin, enchantName, level);
                 break;
             case "slice":
-                enchant = new SliceEnchant(logger, enchantName, level);
+                enchant = new SliceEnchant(plugin, enchantName, level);
                 break;
             default:
                 //log that the passed in enchantName is invalid

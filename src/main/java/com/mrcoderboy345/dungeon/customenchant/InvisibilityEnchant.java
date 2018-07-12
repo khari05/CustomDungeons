@@ -5,7 +5,6 @@ import com.mrcoderboy345.dungeon.MainClass;
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.potion.Effect;
-import cn.nukkit.utils.Logger;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.nbt.tag.ListTag;
 
@@ -23,7 +22,6 @@ public class InvisibilityEnchant extends CustomEnchant{
     
     @Override 
     public boolean canBeAppliedTo(Item item) {
-        // logger.info("Applying NightVision to " + item.getName() + " IsHelmet[" + item.isHelmet() + "]");
         return item.isArmor();
     }
 
@@ -34,10 +32,9 @@ public class InvisibilityEnchant extends CustomEnchant{
         effect.setDuration(199999980);
         player.addEffect(effect);
         Item[] playerarmor = player.getInventory().getArmorContents();
-        int a = 0;
+        int a = 1;
         for (int i=0; i<playerarmor.length; i++){
             if (playerarmor[i].hasCompoundTag()){
-                // logger.info("this is armor "+i+":");
                 ListTag<CompoundTag> enchants = playerarmor[i].getNamedTag().getList("customenchants",CompoundTag.class);
                 if (enchants != null){
                     for (int j=0; j<enchants.size(); j++){
@@ -48,23 +45,19 @@ public class InvisibilityEnchant extends CustomEnchant{
                 }
             }
         }
-        plugin.getLogger().info("The value of a after onarmor: "+ a);
         if (a == 4){
             for (Player p : plugin.getServer().getOnlinePlayers().values()) {
                 p.hidePlayer(player);
             }
         }
-        // this.logger.info("Night Vision effect added to " + player.getName());
     }
 
     @Override
     public void offArmor(Player player){
-        // this.logger.info("Night Vision effect removed from " + player.getName());
         Item[] playerarmor = player.getInventory().getArmorContents();
         int a = 0;
         for (int i=0; i<playerarmor.length; i++){
             if (playerarmor[i].hasCompoundTag()){
-                // logger.info("this is armor "+i+":");
                 ListTag<CompoundTag> enchants = playerarmor[i].getNamedTag().getList("customenchants",CompoundTag.class);
                 if (enchants != null){
                     for (int j=0; j<enchants.size(); j++){
@@ -75,13 +68,10 @@ public class InvisibilityEnchant extends CustomEnchant{
                 }
             }
         }
-        if (a != 4){
+        
             for (Player p : plugin.getServer().getOnlinePlayers().values()) {
                 p.showPlayer(player);
             }
-        if (a < 1){
             player.removeEffect(Effect.INVISIBILITY);
-        }
-        }
     }
 }

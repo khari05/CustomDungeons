@@ -5,7 +5,6 @@ import com.mrcoderboy345.dungeon.MainClass;
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.potion.Effect;
-import cn.nukkit.utils.Logger;
 
 public class NightVisionEnchant extends CustomEnchant{
     
